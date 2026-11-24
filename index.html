@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>RD</title>
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="RD">
@@ -20,10 +20,13 @@
   --f:'Manrope',-apple-system,'Helvetica Neue',Arial,sans-serif;
   --fh:'Unbounded','Manrope',Impact,sans-serif;
   --bg:#000;--card:#1c1d21;--card2:#26282d;--mut:#8b8e95;--blue:#1f5dff;--red:#ff4d5e;--tx:#fff;color-scheme:dark}
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
-body{margin:0;background:var(--bg);color:var(--tx);font-family:var(--f);font-weight:600;-webkit-font-smoothing:antialiased;min-height:100dvh;touch-action:manipulation;-webkit-user-select:none;user-select:none}
-input,textarea,select{-webkit-user-select:text;user-select:text}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;touch-action:pan-x pan-y}
+html{scroll-padding-top:env(safe-area-inset-top,0px);-webkit-text-size-adjust:100%;text-size-adjust:100%;-webkit-touch-callout:none}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:var(--f);font-weight:600;-webkit-font-smoothing:antialiased;min-height:100dvh}
+/* запрет выделения: только на элементах без полей ввода, чтобы клавиатура открывалась */
+button,.frame,.tk,.nav,.wd,.pill,.hero,.hd,.lbl,.jr,.sub,h1,h2,label,.cell,.nm,.pw,.st,.rk,.big,.toast,#app,.nav *{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+input,textarea,select{-webkit-user-select:text;user-select:text;-webkit-touch-callout:default}
+img{-webkit-user-drag:none;-webkit-touch-callout:none}
 .glow{position:fixed;inset:0;z-index:-1;background:radial-gradient(130% 42% at 50% 112%,#0a62ff 0%,#052e8a 42%,#000 78%)}
 #app{max-width:480px;margin:0 auto;padding:calc(18px + env(safe-area-inset-top,0px)) 20px 150px}
 .hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}
@@ -79,23 +82,23 @@ h2{font-size:25px;font-weight:800;margin:0 0 6px}
 .frame .in{height:100%;background:#202227;border-radius:24px;padding:10px 8px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
 .st{width:50px;height:50px;color:var(--sc)}
 .st svg{width:100%;height:100%;display:block}
-.pi{width:50px;height:50px;border-radius:50%;object-fit:cover;display:block}
+.pi{width:50px;height:50px;border-radius:50%;object-fit:cover;display:block;pointer-events:none}
 .nm{font-size:15px;font-weight:800;margin-top:8px;line-height:1.15;word-break:break-word;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;max-width:100%}
 .pw{font-size:12px;color:var(--mut);margin-top:3px}
-/* 1: платина / бриллиант: холодный белый с голубым, кристальное свечение и блик */
+/* 1: платина / бриллиант */
 .f1{--sc:#eaf8ff;background:linear-gradient(135deg,#fff,#8fd3ff 28%,#e8f8ff 50%,#7cc8ff 72%,#fff);box-shadow:0 0 28px rgba(120,210,255,.65),0 0 3px rgba(255,255,255,.9)}
 .f1 .in{background:radial-gradient(circle at 50% 38%,#2c3b48,#1d2127 72%)}
 .f1 .st{filter:drop-shadow(0 0 9px rgba(120,210,255,.95))}
 .f1::after{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.5) 50%,transparent 65%);transform:translateX(-130%);animation:sheen 4.5s ease-in-out infinite;pointer-events:none}
-/* 2: золото: насыщенный жёлто-оранжевый, тёплое свечение */
+/* 2: золото */
 .f2{--sc:#ffc42e;background:linear-gradient(135deg,#ffe27a,#f59e0b 45%,#b45309 55%,#ffd35c);box-shadow:0 0 22px rgba(255,170,30,.5)}
 .f2 .in{background:radial-gradient(circle at 50% 38%,#3a3020,#202227 72%)}
 .f2 .st{filter:drop-shadow(0 0 7px rgba(255,170,30,.75))}
-/* 3: серебро: холодный стальной, лёгкий матовый блеск */
+/* 3: серебро */
 .f3{--sc:#c6ccd6;background:linear-gradient(135deg,#e6eaf0,#8b94a1 50%,#d3d9e1);box-shadow:0 2px 10px rgba(0,0,0,.45)}
-/* 4: бронза: тёмная медь, матовая, без свечения */
+/* 4: бронза */
 .f4{--sc:#a8622e;background:linear-gradient(135deg,#9c5b2c,#58311a 50%,#8a4f26)}
-/* 5: камень / болотно-зелёный: тусклый, без блеска */
+/* 5: камень */
 .f5{--sc:#626a5d;background:#414b3d}
 .f5 .in{background:#1e2022}
 .lock{filter:saturate(.5) brightness(.6);box-shadow:none!important}
@@ -103,7 +106,7 @@ h2{font-size:25px;font-weight:800;margin:0 0 6px}
 .lock .st{filter:none}
 
 .sh{position:fixed;inset:0;z-index:10;background:rgba(0,0,0,.6);display:flex;align-items:flex-end;justify-content:center}
-.sh>div{background:#141518;width:100%;max-width:480px;border-radius:32px 32px 0 0;padding:22px 20px calc(24px + env(safe-area-inset-bottom,0px));max-height:90dvh;overflow:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;-webkit-user-select:text;user-select:text}
+.sh>div{background:#141518;width:100%;max-width:480px;border-radius:32px 32px 0 0;padding:22px 20px calc(24px + env(safe-area-inset-bottom,0px));max-height:90dvh;overflow:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
 .sh h2{margin-bottom:14px}
 label{display:block;font-size:14px;color:var(--mut);margin:14px 0 6px}
 input[type=text],input[type=number],textarea,select{width:100%;background:var(--card);border:0;border-radius:18px;color:#fff;font:inherit;font-size:16px;padding:14px 16px;outline:none}
@@ -236,7 +239,7 @@ function unaward(id){S.ach.find(x=>x.id==id).earned=null;save();closeS();render(
 function delA(id){if(confirm('Удалить ачивку?')){S.ach=S.ach.filter(x=>x.id!=id);save();closeS();render()}}
 
 function achForm(id){const a=id?S.ach.find(x=>x.id==id):null;F={pow:a?a.pow:3,img:a?a.img:null,id:a?a.id:null};
- sheet('<h2>'+(a?'Редактировать ачивку':'Новая ачивка')+'</h2><label>Название</label><input type="text" id="an" placeholder="Забег 10 км"><label>Подпись (необязательно)</label><input type="text" id="ar" placeholder="Например: спорт">'
+ sheet('<h2>'+(a?'Редактировать ачивку':'Новая ачивка')+'</h2><label>Название</label><input type="text" id="an" placeholder="Забег 10 км" autocomplete="off"><label>Подпись (необязательно)</label><input type="text" id="ar" placeholder="Например: спорт" autocomplete="off">'
  +'<label>Сила: 1 платина (самая сложная), 2 золото, 3 серебро, 4 бронза, 5 камень (самая лёгкая)</label><div class="pws" id="pw">'+[1,2,3,4,5].map(n=>'<button onclick="setP('+n+')" class="'+(n==F.pow?'a':'')+'">'+n+'</button>').join('')+'</div>'
  +'<label>За что ачивка</label><textarea id="aw" placeholder="Пробежал 10 км без остановки"></textarea>'
  +'<label>Фото вместо звезды'+(a&&a.img?' (оставь пустым, чтобы не менять)':'')+'</label><input type="file" id="af" accept="image/*" onchange="pic(this)" style="color:#8b8e95;font-size:15px">'
@@ -268,6 +271,14 @@ function tick(){
  if(t!==curDay){curDay=t;catchUp();checkAch();save();anim=true;render();return}
  const el=$('#cd');if(el&&!S.finished){const x=cdText();if(el.textContent!==x)el.textContent=x}
 }
+
+/* запрет зума, двойного тапа и выделения (поля ввода не затрагиваются) */
+const inField=t=>{const n=t&&t.nodeType==3?t.parentElement:t;return !!(n&&n.closest&&n.closest('input,textarea,select'))};
+['gesturestart','gesturechange','gestureend','dblclick'].forEach(n=>document.addEventListener(n,e=>e.preventDefault(),{passive:false}));
+document.addEventListener('touchmove',e=>{if(e.touches.length>1)e.preventDefault()},{passive:false});
+document.addEventListener('selectstart',e=>{if(!inField(e.target))e.preventDefault()});
+document.addEventListener('contextmenu',e=>{if(!inField(e.target))e.preventDefault()});
+
 window.addEventListener('error',e=>toast('Ошибка: '+e.message));
 load();if(S.icon)setIcon(S.icon);catchUp();checkAch();save();render();
 setInterval(tick,1000);
